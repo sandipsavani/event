@@ -1,142 +1,827 @@
+<script>
+
+
+
+    var fileType = "";
+
+    function dragNdrop(event) {
+
+        var fileName = URL.createObjectURL(event.target.files[0]);
+
+        var preview = document.getElementById("preview");
+
+        var previewImg = document.createElement(fileType);
+
+        previewImg.setAttribute("src", fileName);
+
+        preview.innerHTML = "";
+
+        preview.appendChild(previewImg);
+
+    }
+
+    function drag() {
+
+        document.getElementById('uploadFile').parentNode.className = 'draging dragBox';
+
+    }
+
+    function drop() {
+
+        document.getElementById('uploadFile').parentNode.className = 'dragBox';
+
+    }
+
+
+
+
+
+    function albumSelection() {
+
+        var x = document.getElementById("album-type").value;
+
+        fileType = x;
+
+    }
+
+</script>
+
+
+
+<style>
+    label {
+
+        font-weight: bold;
+
+    }
+
+
+
+    #album-select {
+
+        padding: 5px;
+
+        font-size: 16px;
+
+        border-radius: 15px;
+
+    }
+
+
+
+    .album-header {
+
+        margin-bottom: 20px;
+
+    }
+
+
+
+
+
+    /* header {
+
+    background-color: #333;
+
+    color: #fff;
+
+    text-align: center;
+
+    padding: 20px;
+
+} */
+
+
+
+    .album-selector {
+
+        text-align: center;
+
+        margin: 20px;
+
+    }
+
+
+
+    select {
+
+        padding: 10px;
+
+    }
+
+
+
+    #image-gallery {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        padding-bottom: 40px;
+
+    }
+
+
+
+    #image-gallery img {
+
+        width: 300px;
+
+        height: auto;
+
+    }
+
+
+
+    .album-image {
+
+        opacity: 0;
+
+        transition: opacity 0.5s ease-in-out;
+
+        margin: 10px;
+
+    }
+
+
+
+    .album-image.show {
+
+        opacity: 1;
+
+    }
+
+
+
+
+
+    #enlargedContainer {
+
+        display: none;
+
+        position: fixed;
+
+        top: 0;
+
+        left: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        background-color: rgba(0, 0, 0, 0.7);
+
+        justify-content: center;
+
+        align-items: center;
+
+    }
+
+
+
+    #enlargedImage {
+
+        max-width: 50%;
+
+        max-height: 50%;
+
+    }
+
+
+
+
+
+    .uploadOuter {
+
+        margin-top: 3em;
+
+        margin-bottom: 2em;
+
+        padding: 20px;
+
+    }
+
+
+
+    /* @media (max-width: 768px){
+
+    .col-md-3 {
+
+min-width: 60% !important;
+
+}
+
+} */
+
+
+
+    .dragBox {
+
+        width: 250px;
+
+        height: 100px;
+
+        margin: 0 auto;
+
+        position: relative;
+
+        text-align: center;
+
+        font-weight: bold;
+
+        line-height: 95px;
+
+        color: #999;
+
+        border: 2px dashed #ccc;
+
+        display: inline-block;
+
+        transition: transform 0.3s;
+
+    }
+
+
+
+    input[type="file"] {
+
+        position: absolute;
+
+        height: 100%;
+
+        width: 100%;
+
+        opacity: 0;
+
+        top: 0;
+
+        left: 0;
+
+    }
+
+
+
+    .select-padd {
+
+        padding: 0.5em;
+
+        width: 80%;
+
+    }
+
+
+
+
+
+    .draging {
+
+        transform: scale(1.1);
+
+    }
+
+
+
+    .center {
+
+        text-align: center;
+
+    }
+
+
+
+    @media (max-width:767px) {
+
+
+
+        .upload-content {
+
+            text-align: center;
+
+        }
+
+
+
+        /* .select-padd {
+
+        width: 300px;
+
+        max-width: 300px;
+
+    }
+
+ 
+
+    .select-padd option{
+
+        width: 300px;
+
+        max-width: 60% !important;
+
+    } */
+
+    }
+
+
+
+    .btn-sub {
+
+        display: inline-block;
+
+        background-color: #ee626b;
+
+        text-transform: uppercase;
+
+        color: #fff;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        padding: 10px 20px;
+
+        border-radius: 25px;
+
+        transition: all .3s;
+
+    }
+
+
+
+    @media(min-width:767px) {
+
+        .upload-br {
+
+            display: none;
+
+        }
+
+    }
+
+
+
+    .album-select {
+
+        padding: 5px;
+
+        font-size: 16px;
+
+        border-radius: 15px;
+
+    }
+
+
+
+    #preview {
+
+        margin-top: 4em;
+
+    }
+
+
+
+    #preview img,
+    #preview video {
+
+        max-height: 320px;
+
+    }
+
+
+
+    .close {
+
+        font-size: 45px;
+
+        font-weight: 600;
+
+    }
+
+
+
+
+
+    .upload-banner {
+
+        background-image: url(../images/A1-6.jpg);
+
+        border-radius: 0px 0px 150px 150px;
+
+        background-position: center bottom;
+
+        background-repeat: no-repeat;
+
+        background-size: cover;
+
+        padding: 100px 0px;
+
+    }
+</style>
+
+
+
+
+
 <!doctype html>
+
 <html class="no-js" lang="zxx">
+
+
 
 <!-- Mirrored from htmldemo.net/minimax-portfolio/minimax/box-card-portfolio-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Oct 2023 06:21:03 GMT -->
 
+
+
 <head>
+
     <meta charset="utf-8">
+
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     <title>Event</title>
+
     <meta name="description" content="">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
     <!-- Favicon -->
+
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 
+
+
     <!-- all css here -->
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
     <link rel="stylesheet" href="css/font-awesome.min.css">
+
     <link rel="stylesheet" href="css/et-line-fonts.css">
+
     <link rel="stylesheet" href="css/animate.css">
+
     <link rel="stylesheet" href="css/owl.carousel.css">
+
     <link rel="stylesheet" href="css/magnific-popup.css">
+
     <link rel="stylesheet" href="css/meanmenu.css">
+
     <link rel="stylesheet" href="css/shortcode/shortcodes.css">
+
     <link rel="stylesheet" href="style.css">
+
     <link rel="stylesheet" href="custom.css">
 
+
+
     <link rel="stylesheet" href="css/responsive.css">
+
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
+
+
 <body>
+
     <!--[if lt IE 8]>
+
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+
         <![endif]-->
+
     <!-- Add your site or application content here -->
+
     <!-- header start -->
+
     <header>
+
         <header class="hhh">
+
             <div class="header-area header-sticky">
+
                 <div class="container-fluid">
+
                     <div class="row">
+
                         <div class="col-lg-3 col-12">
+
                             <div class="logo">
+
                                 <a href="index.html"><img style="width: 30%;" src="img/event/logo.png" alt="" /></a>
+
                             </div>
+
                         </div>
+
                         <div class="col-lg-9 col-12">
+
                             <div class="main-menu mean-menu menu-style-toggle text-end">
+
                                 <nav>
+
                                     <ul class="menu">
+
                                         <li><a href="index.html">HOME</a></li>
+
                                         <li><a href="upload.html">UPLOAD</a></li>
+
                                         <li><a href="review.html">REVIEW</a></li>
+
                                         <li><a href="index.html">ALBUM</a></li>
+
                                         <li><a href="index.html">SECURITY</a></li>
+
                                     </ul>
+
                                 </nav>
+
                                 <div class="menu-toggle hamburger hamburger--squeeze d-none d-lg-block">
+
                                     <div class="hamburger-box">
+
                                         <div class="hamburger-inner"></div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                             <div class="mobile-menu"></div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </header>
+
     </header>
+
     <!-- header end -->
+
     <section class="breadcrumbs-area ptb-110 bg-2 port bread-card breadcrumbs-img">
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-lg-12 text-center">
+
                     <div class="breadcrumbs">
+
                         <h2 class="page-title">Upload</h2>
+
                         <ul>
+
                             <li>
+
                                 <a class="active" href="index.html">Home</a>
+
                             </li>
+
                             <li>
-                                upload
+
+                                ueview
+
                             </li>
+
                         </ul>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Upload area start -->
+    <!-- portfolio area start -->
+
     <div class="portfolio-area ptb-90">
-        <div class="container">
+
+        <div class="section">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-3 upload-content">
+
+
+
+                        <p style="padding-top: 2em;">Album</p>
+
+
+
+                        <select class="select-padd album-select">
+
+                            <option value="">Select</option>
+
+                            <option value="TCI - Vintage Car">TCI - Vintage Car</option>
+
+                            <option value="TCI - Welcome Dinner">TCI - Welcome Dinner</option>
+
+                            <option value="Spirit">Spirit</option>
+
+                            <option value="Toyota Minitreking">Toyota Minitreking</option>
+
+                            <option value="Subaru Team India Visit">Subaru Team India Visit</option>
+
+
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-lg-3 upload-content">
+
+                        <p style="padding-top: 2em;">Type of file</p>
+
+                        <select name="" id="album-type" class="select-padd album-select" onchange="albumSelection()">
+
+                            <option value="">Select</option>
+
+                            <option value="img">Image</option>
+
+                            <option value="video">Video</option>
+
+                            <option value="img">Gif</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-lg-6"></div>
+
+
+
+                    <!-- <div class="col-lg-6"></div> -->
+
+
+
+                </div>
+
+
+
+
+
+                <div class="row">
+
+                    <div class="col-lg-6 upload-content">
+
+
+
+                        <div class="uploadOuter">
+
+                            <label for="uploadFile" class="btn btn-primary">Upload File</label>
+
+                            <br class="upload-br">
+
+                            <strong>OR</strong>
+
+                            <br class="upload-br">
+
+                            <span class="dragBox">
+
+                                Darg and Drop file here
+
+                                <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()"
+                                    id="uploadFile" />
+
+                            </span>
+
+                        </div>
+
+                        <button type="button" class="btn btn-success btn-sub" style="margin-left:20px">Submit</button>
+
+
+
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+
+
+
+                        <div id="preview">
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+                    <!-- <div class="col-lg-6"></div> -->
+
+
+
+                </div>
+
+            </div>
 
         </div>
+
     </div>
-    <!-- Upload area end -->
 
     <!-- footer start -->
+
     <footer class="footer-bg">
+
         <div class="footer-bottom gray-bg ptb-20">
+
             <div class="container">
+
                 <div class="copyright text-center">
+
                     <p>© 2023 <a href="https://one10marketing.com/" target="_blank">one10marketing</a>, All Rights
+
                         Reserved.</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </footer>
+
     <!-- footer end -->
+
     <!-- start scrollUp  -->
+
     <div id="toTop">
+
         <i class="fa fa-chevron-up"></i>
+
     </div>
+
+
+
 
 
     <!-- all js here -->
+
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
+
     <script src="js/bootstrap.min.js"></script>
+
     <script src="js/isotope.pkgd.min.js"></script>
+
     <script src="js/owl.carousel.min.js"></script>
+
     <script src="js/imagesloaded.pkgd.min.js"></script>
+
     <script src="js/jquery.meanmenu.js"></script>
+
     <!-- ajax-mail js -->
+
     <script src="js/ajax-mail.js"></script>
+
     <script src="js/plugins.js"></script>
+
     <script type="text/javascript">
+
         // grab an element
+
         var myElement = document.querySelector(".intelligent-header");
+
         // construct an instance of Headroom, passing the element
+
         var headroom = new Headroom(myElement);
+
         // initialise
-        headroom.init(); 
+
+        headroom.init();
+
     </script>
+
     <script src="js/main.js"></script>
+
 </body>
 
+
+
 <!-- Mirrored from htmldemo.net/minimax-portfolio/minimax/box-card-portfolio-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Oct 2023 06:21:03 GMT -->
+
+
 
 </html>
