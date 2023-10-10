@@ -26,6 +26,41 @@
     <link rel="stylesheet" href="custom.css">
 
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+    
+        @media screen and (min-width: 769px) {
+            .portfolio-menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        }
+        @media screen and (max-width:768px){
+            .album-dropdown{
+           margin-bottom: 25px; 
+           justify-content: center;
+        }
+        select{
+            width:fit-content;
+        }
+        .portfolio-menu{
+            text-align: center;
+        }
+        }
+        .album-dropdown{
+        font-family: "Dosis",sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        /* margin: 0 15px; */
+        padding: 0;
+        position: relative;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        }
+        </style>
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -92,12 +127,25 @@
     <!-- portfolio area start -->
     <div class="portfolio-area ptb-90">
         <div class="container">
-            <div class="portfolio-menu text-center mb-50">
-                <button class="active" data-filter="*">ALL</button>
-                <button data-filter=".cat1">PENDING</button>
-                <button data-filter=".cat2">DENIED</button>
-                <button data-filter=".cat3">APPROVED</button>
+            <div class="portfolio-menu mb-50">               
+                <div class="album-dropdown" >
+                        
+                        <a><label for="slector" style="white-space: nowrap; padding-right:10px; font-weight: 600;">Select Album</label></a>
+                        <select name="select-Album" id="select-Album" style="height: 35px;">
+                            <option value="">TCI - Vintage Car</option>
+                            <option value="">Spirit</option>
+                            <option value="">TCI - Welcome Dinner</option>
+                            <option value="">Toyota Minitreking</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="active" data-filter="*">ALL</button>
+                        <button data-filter=".cat1">PENDING</button>
+                        <button data-filter=".cat2">DENIED</button>
+                        <button data-filter=".cat3">APPROVED</button>
+                    </div>
             </div>
+    
             <div class="portfolio-style-2">
                 <div class="row grid">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12 grid-item cat2 cat3">
