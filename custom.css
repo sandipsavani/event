@@ -18,3 +18,10 @@
     color: #fff;
     border-radius: 0.2em;
 }
+ .link:hover .portfolio-img {
+    opacity: 1 !important;
+}
+.price-btn a {
+    font-size: 10px;
+    padding: 10px 12px;
+  }
