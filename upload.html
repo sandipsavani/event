@@ -2,23 +2,63 @@
 
 
 
-    var fileType = "";
-
     function dragNdrop(event) {
 
-        var fileName = URL.createObjectURL(event.target.files[0]);
+        var NameofFile = event.target.files[0].name;
+        var typeofFile = "." + event.target.value.split('.').pop();
 
-        var preview = document.getElementById("preview");
+        var numberoffile = document.getElementById("selected-files");
+        var quantos = numberoffile.files.length;
+        console.log(quantos);
 
-        var previewImg = document.createElement(fileType);
 
-        previewImg.setAttribute("src", fileName);
+        if(typeofFile !== ".mp4"){
+            for (var i = 0; i < quantos; i++) {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(event.target.files[i]);  // Object Blob
+            img.alt = event.name;
+            document.querySelector('#preview').append(img);
+        }
+        }
 
-        preview.innerHTML = "";
+        else{
+                for (var i = 0; i < quantos; i++) {
+            var blobURL = URL.createObjectURL(event.target.files[i]);
+            var video = document.createElement('video');
+            video.src = blobURL;
+            video.setAttribute("controls", "")
+            document.querySelector('#preview').append(video);
+        }
+        }
 
-        preview.appendChild(previewImg);
+
+
+        console.log(typeofFile);
+
+        var _validFileExtensions = [".jpg", ".jpeg", ".gif", ".png", ".mp4"];
+
+        var blnValid = false;
+        for (var j = 0; j < _validFileExtensions.length; j++) {
+
+            if (typeofFile === _validFileExtensions[j]) {
+                blnValid = true;
+                // console.log(blnValid);
+                break;
+            }
+        }
+
+        if (!blnValid) {
+            alert("Sorry, " + typeofFile + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+            // event.value = "";
+            return false;
+        }
 
     }
+
+    document.querySelector("#selected-files").addEventListener("change", (ev) => {
+        if (!ev.target.files) return; // Do nothing.
+        [...ev.target.files].forEach(dragNdrop);
+    });
 
     function drag() {
 
@@ -36,13 +76,13 @@
 
 
 
-    function albumSelection() {
+    // function albumSelection() {
 
-        var x = document.getElementById("album-type").value;
+    //     var x = document.getElementById("album-type").value;
 
-        fileType = x;
+    //     fileType = x;
 
-    }
+    // }
 
 </script>
 
@@ -147,6 +187,10 @@
 
     }
 
+    .btn-sub{
+        margin-top: 2em;
+    }
+
 
 
     .album-image.show {
@@ -197,11 +241,9 @@
 
     .uploadOuter {
 
-        margin-top: 3em;
-
         margin-bottom: 2em;
 
-        padding: 20px;
+        padding: 13px 20px 20px 20px;
 
     }
 
@@ -375,18 +417,12 @@ min-width: 60% !important;
 
 
 
-    #preview {
-
-        margin-top: 4em;
-
-    }
-
-
 
     #preview img,
     #preview video {
 
-        max-height: 320px;
+        max-height: 150px;
+        padding: 5px;
 
     }
 
@@ -591,7 +627,7 @@ min-width: 60% !important;
 
                             <li>
 
-                                ueview
+                                upload
 
                             </li>
 
@@ -609,7 +645,7 @@ min-width: 60% !important;
 
     <!-- portfolio area start -->
 
-    <div class="portfolio-area ptb-90">
+    <div class="portfolio-area ptb-50">
 
         <div class="section">
 
@@ -621,33 +657,22 @@ min-width: 60% !important;
 
 
 
-                        <p style="padding-top: 2em;">Album</p>
+                        <p>Album</p>
 
 
 
-                        <select class="select-padd album-select">
-
-                            <option value="">Select</option>
-
-                            <option value="TCI - Vintage Car">TCI - Vintage Car</option>
-
-                            <option value="TCI - Welcome Dinner">TCI - Welcome Dinner</option>
-
-                            <option value="Spirit">Spirit</option>
-
-                            <option value="Toyota Minitreking">Toyota Minitreking</option>
-
-                            <option value="Subaru Team India Visit">Subaru Team India Visit</option>
-
-
-
-                        </select>
+                        <select name="select-Album" id="select-Album" >
+                        <option value="">TCI - Vintage Car</option>
+                        <option value="">Spirit</option>
+                        <option value="">TCI - Welcome Dinner</option>
+                        <option value="">Toyota Minitreking</option>
+                    </select>
 
                     </div>
 
-                    <div class="col-lg-3 upload-content">
+                    <div class="col-lg-9 upload-content">
 
-                        <p style="padding-top: 2em;">Type of file</p>
+                        <!-- <p style="padding-top: 2em;">Type of file</p>
 
                         <select name="" id="album-type" class="select-padd album-select" onchange="albumSelection()">
 
@@ -659,29 +684,7 @@ min-width: 60% !important;
 
                             <option value="img">Gif</option>
 
-                        </select>
-
-                    </div>
-
-                    <div class="col-lg-6"></div>
-
-
-
-                    <!-- <div class="col-lg-6"></div> -->
-
-
-
-                </div>
-
-
-
-
-
-                <div class="row">
-
-                    <div class="col-lg-6 upload-content">
-
-
+                        </select> -->
 
                         <div class="uploadOuter">
 
@@ -698,42 +701,34 @@ min-width: 60% !important;
                                 Darg and Drop file here
 
                                 <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()"
-                                    id="uploadFile" />
+                                    id="selected-files" multiple />
 
                             </span>
 
                         </div>
 
-                        <button type="button" class="btn btn-success btn-sub" style="margin-left:20px">Submit</button>
-
 
 
                     </div>
 
 
+                </div>
 
-                    <div class="col-lg-6">
-
-
-
+                <div class="row">
+                    <div class="col-lg-12">
                         <div id="preview">
-
-
-
                         </div>
 
+
                     </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9 upload-content">
+                        <button type="button" class="btn btn-success btn-sub" style="margin-left:20px">Submit</button>
 
-
-
-
-
-
-                    <!-- <div class="col-lg-6"></div> -->
-
-
-
+                    </div>
                 </div>
 
             </div>
