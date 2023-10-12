@@ -34,3 +34,6 @@
   .portfolio-img > img {
     height: 170px;
 }
+.single-img-select {
+    cursor: pointer;
+}
